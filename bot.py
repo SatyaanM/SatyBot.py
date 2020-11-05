@@ -1,6 +1,7 @@
 import discord
 from discord.ext import commands
 import random
+import config
 
 intents = discord.Intents(messages=True, guilds=True, reactions=True, members=True, presences=True)
 client = commands.Bot(command_prefix='.', intents=intents)
@@ -67,4 +68,4 @@ async def ban(context, member: discord.Member, *, reason='None.'):
     await member.ban(reason=reason)
 
 
-client.run("NzczNzgwODM0ODI5ODYwODk1.X6ONjw.JxCnpL0yGGCWWJDfM6miUpxc4Ok")
+client.run(config.token)
