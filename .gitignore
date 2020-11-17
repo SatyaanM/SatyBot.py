@@ -1,6 +1,6 @@
 # Default ignored files
 /shelf/
-/workspace.xml
+/.idea/workspace.xml
 # Datasource local storage ignored files
 /../../../../../../../:\Users\Donna\Desktop\pythonstuffs\discord_stuff\.idea/dataSources/
 /dataSources.local.xml
@@ -8,3 +8,4 @@
 /httpRequests/
 
 *.env
+/.idea/
