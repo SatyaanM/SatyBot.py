@@ -34,7 +34,7 @@ class Misc(commands.Cog):
         mail = imaplib.IMAP4_SSL("imap.gmail.com")
 
         mail.login(user=os.getenv('EMAIL_USER'), password=os.getenv('EMAIL_PASS'))
-        mail.select('"CodingProblems"')
+        mail.select('"Daily Coding Problem"')
 
         result, data = mail.uid('search', None, "ALL")
         msgs = data[0].split()
