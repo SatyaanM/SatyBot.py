@@ -9,7 +9,7 @@ intents = discord.Intents(messages=True, guilds=True, reactions=True, members=Tr
 client = commands.Bot(command_prefix='.', intents=intents)
 
 
-@client.command()
+@client.command(name='load', help='To load a specific cog')
 @commands.has_permissions(administrator=True)
 async def load(context, extension):
     client.load_extension(f'cogs.{extension}')
@@ -24,7 +24,7 @@ async def load_error(context, error):
         await context.send('Cog not found.')
 
 
-@client.command()
+@client.command(name='reload', help='To reload a specific cog')
 @commands.has_permissions(administrator=True)
 async def reload(context, extension):
     client.unload_extension(f'cogs.{extension}')
@@ -40,7 +40,7 @@ async def reload_error(context, error):
         await context.send('Cog not found.')
 
 
-@client.command()
+@client.command(name='unload', help='To unload a specific cog')
 @commands.has_permissions(administrator=True)
 async def unload(context, extension):
     client.unload_extension(f'cogs.{extension}')

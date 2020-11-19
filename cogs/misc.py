@@ -17,7 +17,7 @@ class Misc(commands.Cog):
         if isinstance(error, commands.CommandNotFound):
             await context.send('Invalid command.')
 
-    @commands.command(aliases=['latency'])
+    @commands.command(aliases=['latency'], name='ping', help='To test latency')
     async def ping(self, context):
         await context.send(f'{round(self.client.latency * 1000)}ms')
 

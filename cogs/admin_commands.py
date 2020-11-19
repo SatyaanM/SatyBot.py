@@ -7,7 +7,7 @@ class AdminCommands(commands.Cog):
     def __init__(self, client):
         self.client = client
 
-    @commands.command()
+    @commands.command(name='clear', help='To delete a specified number of messages')
     @commands.has_permissions(manage_messages=True)
     async def clear(self, context, amount: int):
         await context.channel.purge(limit=amount+1)
@@ -20,7 +20,7 @@ class AdminCommands(commands.Cog):
         if isinstance(error, commands.MissingPermissions):
             await context.send('You do not have permission to Manage Messages')
 
-    @commands.command()
+    @commands.command(name='kick', help='To kick a specific user')
     @commands.has_permissions(kick_members=True)
     async def kick(self, context, member: discord.Member, *, reason='None.'):
         await member.kick(reason=reason)
@@ -33,7 +33,7 @@ class AdminCommands(commands.Cog):
         if isinstance(error, commands.MissingPermissions):
             await context.send('You do not have permission to Kick Users.')
 
-    @commands.command()
+    @commands.command(name='ban', help='To ban a specific user')
     @commands.has_permissions(ban_members=True)
     async def ban(self, context, member: discord.Member, *, reason='None.'):
         await member.ban(reason=reason)
@@ -46,7 +46,7 @@ class AdminCommands(commands.Cog):
         if isinstance(error, commands.MissingPermissions):
             await context.send('You do not have permission to Ban Users.')
 
-    @commands.command()
+    @commands.command(name='unban', help='To unban a specific user')
     @commands.has_permissions(ban_members=True)
     async def unban(self, context, *, member):
         banned_users = await context.guild.bans()

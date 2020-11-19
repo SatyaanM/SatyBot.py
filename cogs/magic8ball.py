@@ -8,7 +8,7 @@ class Magic8ball(commands.Cog):
     def __init__(self, client):
         self.client = client
 
-    @commands.command(aliases=['8ball'])
+    @commands.command(aliases=['8ball'], name='8ball', help='Ask the magic 8 ball for guidance')
     async def _8ball(self, context, *, question):
         responses = ['It is certain.',
                      'It is decidedly so.',
