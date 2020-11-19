@@ -57,7 +57,9 @@ class Misc(commands.Cog):
     @commands.command(name='problem', help="To get the latest Daily Coding Problem")
     async def problem(self, context):
         temp = self.get_problem()
-        await context.send(temp)
+        ebd = discord.Embed(colour=discord.Colour.dark_teal())
+        ebd.add_field(name='Problem: ', value=temp, inline=False)
+        await context.message.channel.send(embed=ebd)
 
 
 def setup(client):
