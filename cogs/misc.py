@@ -1,4 +1,4 @@
-import cogs.problem
+import problem
 import discord
 from discord.ext import commands
 
@@ -24,7 +24,7 @@ class Misc(commands.Cog):
 
     @commands.command(name='problem', help="To get the latest Daily Coding Problem")
     async def problem(self, context):
-        await context.send(cogs.problem.get_problem())
+        await context.send(problem.get_problem())
 
 
 def setup(client):

@@ -5,7 +5,7 @@ import os
 
 
 def get_problem():
-    load_dotenv('C:/Users/Donna/Desktop/pythonstuffs/discord_stuff/.env')
+    load_dotenv('/.env')
 
     username = os.getenv('USER')
     password = os.getenv('PASS')
