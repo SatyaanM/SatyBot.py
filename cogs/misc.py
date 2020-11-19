@@ -2,6 +2,8 @@ import email
 import imaplib
 import os
 import quopri
+from dotenv import load_dotenv
+load_dotenv('.env')
 
 import discord
 from discord.ext import commands
