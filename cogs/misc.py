@@ -2,8 +2,6 @@ import email
 import imaplib
 import os
 import quopri
-from dotenv import load_dotenv
-load_dotenv('.env')
 
 import discord
 from discord.ext import commands
@@ -35,7 +33,7 @@ class Misc(commands.Cog):
     def get_problem(self):
         mail = imaplib.IMAP4_SSL("imap.gmail.com")
 
-        mail.login(os.getenv('USER'), os.getenv('PASS'))
+        mail.login(user=os.getenv('EMAIL_USER'), password=os.getenv('EMAIL_PASS'))
         mail.select('"Daily Coding Problem"')
 
         result, data = mail.uid('search', None, "ALL")
