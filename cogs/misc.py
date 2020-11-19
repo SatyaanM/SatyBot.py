@@ -1,5 +1,6 @@
 import discord
 from discord.ext import commands
+from problem import get_problem
 
 
 class Misc(commands.Cog):
@@ -20,6 +21,10 @@ class Misc(commands.Cog):
     @commands.command(aliases=['latency'], name='ping', help='To test latency')
     async def ping(self, context):
         await context.send(f'{round(self.client.latency * 1000)}ms')
+
+    @commands.command(name='problem', help="To get the latest Daily Coding Problem")
+    async def problem(self, context):
+        await context.send(problem.get_problem())
 
 
 def setup(client):
