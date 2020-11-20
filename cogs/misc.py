@@ -61,6 +61,18 @@ class Misc(commands.Cog):
         ebd.add_field(name='Problem: ', value=temp, inline=False)
         await context.message.channel.send(embed=ebd)
 
+    @commands.command(name='yoda', help='To speak like yoda')
+    async def yoda(self, context, *, phrase: str):
+        words = phrase.split()
+        phrase_rev = " ".join(reversed(words))
+        await context.send(phrase_rev)
+
+        # def talk_like_yoda():
+        #     return ' '.join(input("Enter a Sentence: ").split(' ')[::-1])
+        #
+        # print(talk_like_yoda())
+
+
 
 def setup(client):
     client.add_cog(Misc(client))
