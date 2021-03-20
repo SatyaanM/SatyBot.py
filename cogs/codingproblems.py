@@ -3,11 +3,11 @@ import imaplib
 import os
 import quopri
 import time
-from random import randint
 import discord
 from discord.ext import commands
 from dotenv import load_dotenv
 from selenium import webdriver
+import random
 
 # environmental variables
 load_dotenv('../.env')
@@ -91,7 +91,9 @@ class CodingProblem(commands.Cog):
         driver.save_screenshot("./problem.png")
 
     @commands.command(name='euler', help="To get a problem from Project Euler")
-    async def euler(self, context, num=randint(1, 751)):
+    async def euler(self, context):
+        random.seed(time.time())
+        num = random.randint(1, 751)
         self.screenshot(num)
         time.sleep(3)
         await context.send(file=discord.File('./problem.png'))
