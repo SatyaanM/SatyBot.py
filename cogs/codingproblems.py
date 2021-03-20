@@ -2,13 +2,32 @@ import email
 import imaplib
 import os
 import quopri
-
+from random import randint
 import discord
 from discord.ext import commands
 from dotenv import load_dotenv
+from selenium import webdriver
+
+# environmental variables
 load_dotenv('../.env')
 USER = os.getenv('EMAIL_USER')
 PASSWORD = os.getenv('EMAIL_PASS')
+GOOGLE_CHROME_PATH = os.getenv('GOOGLE_CHROME_PATH')
+CHROMEDRIVER_PATH = os.getenv('CHROMEDRIVER_PATH')
+
+
+
+
+# chrome options
+chrome_options = webdriver.ChromeOptions()
+chrome_options.add_argument('--disable-gpu')
+chrome_options.add_argument('--no-sandbox')
+chrome_options.binary_location = GOOGLE_CHROME_PATH
+driver = webdriver.Chrome(execution_path=CHROMEDRIVER_PATH, chrome_options=chrome_options)
+
+
+# local
+# driver = webdriver.Chrome("C:/chromedriver_win32/chromedriver")
 
 
 class CodingProblem(commands.Cog):
@@ -66,6 +85,18 @@ class CodingProblem(commands.Cog):
         ebd = discord.Embed(colour=discord.Colour.dark_teal())
         ebd.add_field(name=f'{problem[0]}', value=problem[1], inline=False)
         await context.message.channel.send(embed=ebd)
+
+    @staticmethod
+    def screenshot(num):
+        url = f'https://projecteuler.net/problem={num}'
+        driver.set_window_size(1280, 1920)
+        driver.get(url)
+        driver.save_screenshot("./problem.png")
+
+    @commands.command(name='euler', help="To get a problem from Project Euler")
+    async def euler(self, context, num=randint(1, 751)):
+        self.screenshot(num)
+        await context.send(file=discord.File('./problem.png'))
 
 
 def setup(client):
