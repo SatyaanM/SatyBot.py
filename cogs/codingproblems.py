@@ -2,6 +2,7 @@ import email
 import imaplib
 import os
 import quopri
+import time
 from random import randint
 import discord
 from discord.ext import commands
@@ -15,16 +16,12 @@ PASSWORD = os.getenv('EMAIL_PASS')
 GOOGLE_CHROME_PATH = os.getenv('GOOGLE_CHROME_PATH')
 CHROMEDRIVER_PATH = os.getenv('CHROMEDRIVER_PATH')
 
-
-
-
 # chrome options
 chrome_options = webdriver.ChromeOptions()
 chrome_options.add_argument('--disable-gpu')
 chrome_options.add_argument('--no-sandbox')
 chrome_options.binary_location = GOOGLE_CHROME_PATH
 driver = webdriver.Chrome(chrome_options=chrome_options)
-
 
 # local
 # driver = webdriver.Chrome("C:/chromedriver_win32/chromedriver")
@@ -89,13 +86,14 @@ class CodingProblem(commands.Cog):
     @staticmethod
     def screenshot(num):
         url = f'https://projecteuler.net/problem={num}'
-        driver.set_window_size(1280, 1920)
+        driver.set_window_size(720, 1280)
         driver.get(url)
         driver.save_screenshot("./problem.png")
 
     @commands.command(name='euler', help="To get a problem from Project Euler")
     async def euler(self, context, num=randint(1, 751)):
         self.screenshot(num)
+        time.sleep(3)
         await context.send(file=discord.File('./problem.png'))
 
 
