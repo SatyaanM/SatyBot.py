@@ -13,10 +13,11 @@ import random
 load_dotenv('../.env')
 USER = os.getenv('EMAIL_USER')
 PASSWORD = os.getenv('EMAIL_PASS')
+
+
+# chrome options for heroku
 GOOGLE_CHROME_PATH = os.getenv('GOOGLE_CHROME_PATH')
 CHROMEDRIVER_PATH = os.getenv('CHROMEDRIVER_PATH')
-
-# chrome options
 chrome_options = webdriver.ChromeOptions()
 chrome_options.add_argument('--disable-gpu')
 chrome_options.add_argument('--no-sandbox')
@@ -91,11 +92,11 @@ class CodingProblem(commands.Cog):
         driver.save_screenshot("./problem.png")
 
     @commands.command(name='euler', help="To get a problem from Project Euler")
-    async def euler(self, context):
-        random.seed(time.time())
-        num = random.randint(1, 751)
+    async def euler(self, context, num=""):
+        if num == "":
+            random.seed(time.time())
+            num = random.randint(1, 751)
         self.screenshot(num)
-        time.sleep(3)
         await context.send(file=discord.File('./problem.png'))
 
 
