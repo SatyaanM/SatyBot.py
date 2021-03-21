@@ -16,16 +16,16 @@ USER = os.getenv('EMAIL_USER')
 PASSWORD = os.getenv('EMAIL_PASS')
 
 # chrome options for heroku
-# GOOGLE_CHROME_PATH = os.getenv('GOOGLE_CHROME_PATH')
-# CHROMEDRIVER_PATH = os.getenv('CHROMEDRIVER_PATH')
-# chrome_options = webdriver.ChromeOptions()
-# chrome_options.add_argument('--disable-gpu')
-# chrome_options.add_argument('--no-sandbox')
-# chrome_options.binary_location = GOOGLE_CHROME_PATH
-# driver = webdriver.Chrome(chrome_options=chrome_options)
+GOOGLE_CHROME_PATH = os.getenv('GOOGLE_CHROME_PATH')
+CHROMEDRIVER_PATH = os.getenv('CHROMEDRIVER_PATH')
+chrome_options = webdriver.ChromeOptions()
+chrome_options.add_argument('--disable-gpu')
+chrome_options.add_argument('--no-sandbox')
+chrome_options.binary_location = GOOGLE_CHROME_PATH
+driver = webdriver.Chrome(chrome_options=chrome_options)
 
 # local
-driver = webdriver.Chrome("C:/chromedriver_win32/chromedriver")
+# driver = webdriver.Chrome("C:/chromedriver_win32/chromedriver")
 
 
 class CodingProblem(commands.Cog):
