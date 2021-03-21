@@ -10,3 +10,5 @@
 *.env
 /.idea/
 /venv/
+/problem.png
+/what_to_code.png

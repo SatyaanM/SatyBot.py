@@ -1,6 +1,6 @@
-from discord.ext import commands
 import random
 import akinator as ak
+from discord.ext import commands
 
 
 class Games(commands.Cog):
