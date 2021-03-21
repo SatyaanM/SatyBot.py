@@ -10,7 +10,6 @@ load_dotenv('../.env')
 USER = os.getenv('EMAIL_USER')
 PASSWORD = os.getenv('EMAIL_PASS')
 
-
 # chrome options for heroku
 GOOGLE_CHROME_PATH = os.getenv('GOOGLE_CHROME_PATH')
 CHROMEDRIVER_PATH = os.getenv('CHROMEDRIVER_PATH')
@@ -75,25 +74,32 @@ class CodingProblem(commands.Cog):
     @commands.command(name='problem', help="To get a Daily Coding Problem.")
     async def problem(self, context, num=-1):
         problem = self.get_problem(num)
-
         ebd = discord.Embed(colour=discord.Colour.dark_teal())
         ebd.add_field(name=f'{problem[0]}', value=problem[1], inline=False)
         await context.message.channel.send(embed=ebd)
 
     @staticmethod
-    def screenshot(num):
-        url = f'https://projecteuler.net/problem={num}'
+    def screenshot(url, filename):
         driver.set_window_size(720, 1280)
         driver.get(url)
-        driver.save_screenshot("./problem.png")
+        driver.save_screenshot(filename)
 
     @commands.command(name='euler', help="To get a problem from Project Euler")
     async def euler(self, context, num=""):
         if num == "":
             random.seed(time.time())
             num = random.randint(1, 751)
-        self.screenshot(num)
+        url = f'https://projecteuler.net/problem={num}'
+        self.screenshot(url, './problem.png')
+        await context.send(url)
         await context.send(file=discord.File('./problem.png'))
+
+    @commands.command(name='what', help="To get a question from What to Code")
+    async def what(self, context):
+        url = 'https://what-to-code.com/random'
+        self.screenshot(url, './what_to_code.png')
+        await context.send(url)
+        await context.send(file=discord.File('./what_to_code.png'))
 
 
 def setup(client):
