@@ -1,13 +1,9 @@
-import email
-import imaplib
-import os
-import quopri
-import time
+import email, imaplib, quopri
+import os, time, random
 import discord
 from discord.ext import commands
 from dotenv import load_dotenv
 from selenium import webdriver
-import random
 
 # environmental variables
 load_dotenv('../.env')
