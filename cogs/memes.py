@@ -24,3 +24,7 @@ class Memes(commands.Cog):
         response = requests.get('https://meme-api.herokuapp.com/gimme/wholesomememes')
         response = response.json()
         await context.message.channel.send(response['url'])
+
+
+def setup(client):
+    client.add_cog(Memes(client))
