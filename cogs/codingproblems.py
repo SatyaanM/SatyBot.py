@@ -80,13 +80,13 @@ class CodingProblem(commands.Cog):
 
     @staticmethod
     def screenshot(url, filename):
-        driver.set_window_size(720, 1280)
         driver.get(url)
         time.sleep(3)
         driver.save_screenshot(filename)
 
     @commands.command(name='euler', help="To get a problem from Project Euler")
     async def euler(self, context, num=""):
+        driver.set_window_size(720, 1280)
         if num == "":
             random.seed(time.time())
             num = random.randint(1, 751)
@@ -97,6 +97,7 @@ class CodingProblem(commands.Cog):
 
     @commands.command(name='what', help="To get a question from What to Code")
     async def what(self, context):
+        driver.set_window_size(720,720)
         url = 'https://what-to-code.com/random'
         self.screenshot(url, './what_to_code.png')
         await context.send(url)
