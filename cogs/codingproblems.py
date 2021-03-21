@@ -82,6 +82,7 @@ class CodingProblem(commands.Cog):
     def screenshot(url, filename):
         driver.set_window_size(720, 1280)
         driver.get(url)
+        time.sleep(3)
         driver.save_screenshot(filename)
 
     @commands.command(name='euler', help="To get a problem from Project Euler")
