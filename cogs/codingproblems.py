@@ -33,11 +33,6 @@ class CodingProblem(commands.Cog):
     def __init__(self, client):
         self.client = client
 
-    @commands.Cog.listener()
-    async def on_command_error(self, context, error):
-        if isinstance(error, commands.CommandNotFound):
-            await context.send('Invalid command.')
-
     @staticmethod
     def get_problem(num):
         mail = imaplib.IMAP4_SSL("imap.gmail.com")
@@ -102,7 +97,7 @@ class CodingProblem(commands.Cog):
 
     @commands.command(name='what', help="To get a question from What to Code")
     async def what(self, context):
-        driver.set_window_size(720,720)
+        driver.set_window_size(720, 720)
         url = 'https://what-to-code.com/random'
         self.screenshot(url, './what_to_code.png')
         await context.send(url)
